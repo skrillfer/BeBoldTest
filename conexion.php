@@ -6,12 +6,12 @@
   */
 
 require "config.php";
-
+$connection = null;
     try {
-        $connection = new PDO("mysql:host=$host", $username, $password, $options);
+        $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
         // set the PDO error mode to exception
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully"; 
+        
     }
     catch(PDOException $e)
     {

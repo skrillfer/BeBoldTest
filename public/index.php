@@ -1,5 +1,25 @@
 <?php
 require "header.php";
+
+if (isset($_POST['submit'])) {
+  try {
+    if($connection!=null){
+      $nickname = $_POST['nickname'];
+      $pass = $_POST['password'];
+      $stmt = $connection->prepare("SELECT * FROM USER WHERE nickname = :nickname  AND password_ = :pass"); 
+      $stmt->execute(['nickname' => $nickname, 'pass' => $pass]); 
+      
+      $row = $stmt->fetch();
+
+      if($row!=null){
+        echo $row['nickname'];
+        echo "<script>location.href='dashboard.php';</script>";
+      }
+    }
+  } catch(PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
+  }
+}
 ?>
  <body>
  
@@ -9,22 +29,17 @@ require "header.php";
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
+            <form class="form-signin" method="post" >
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Email address</label>
+                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputEmail">Nickname</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-              <button action='/login' class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit"  value="Sign in"/>
               <hr class="my-4">
               
             </form>
@@ -33,7 +48,6 @@ require "header.php";
       </div>
     </div>
   </div>
- <?php ;
-       echo '<p>Hola Mundo</p>';  ?>
+ 
  </body>
 </html>
