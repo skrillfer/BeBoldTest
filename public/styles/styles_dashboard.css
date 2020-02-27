@@ -1,0 +1,22 @@
+body{
+    background: white;
+    min-width: 291px;
+}
+
+.navbar{
+    background: #c5d8ff;
+}
+._span_manage{
+    font-size: 18px;
+    color: aliceblue;
+}
+._span_manage_employees{
+    font-size: 20px;
+    color: aliceblue;
+}
+.navbar-nav-buttons{
+    float: right;
+}
+.card-header {
+    background-color: #3b5998;
+}

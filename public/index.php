@@ -12,7 +12,14 @@ if (isset($_POST['submit'])) {
       $row = $stmt->fetch();
 
       if($row!=null){
-        echo $row['nickname'];
+        // start a session
+        session_start();
+        
+        // initialize session variables
+        $_SESSION['logged_in_user_id'] = $row['nickname'];
+        $_SESSION['logged_in_user_rol'] = $row['rol'];
+        echo "<script>localStorage.setItem('rol','".$row['rol']."');</script>";
+        echo "<script>localStorage.setItem('nickname','".$row['nickname']."');</script>";
         echo "<script>location.href='dashboard.php';</script>";
       }
     }
