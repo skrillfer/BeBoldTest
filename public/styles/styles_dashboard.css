@@ -4,7 +4,12 @@ body{
 }
 
 .navbar{
-    background: #c5d8ff;
+    background: #4b83f3;
+}
+.span-welcome{
+    color: rgb(255, 246, 246);
+    margin-left: 100px;
+    font-size: 18px;
 }
 ._span_manage{
     font-size: 18px;

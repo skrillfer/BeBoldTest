@@ -1,6 +1,10 @@
 <?php
+session_start();
 require "header.php";
-
+if(array_key_exists("logged_in_user_id",$_SESSION)){
+  header("Location: dashboard.php");
+  exit;    
+}
 if (isset($_POST['submit'])) {
   try {
     if($connection!=null){
@@ -32,24 +36,27 @@ if (isset($_POST['submit'])) {
  
  <div class="container">
     <div class="row signin">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="col-sm-9 col-md-9 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin" method="post" >
-              <div class="form-label-group">
-                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Nickname</label>
-              </div>
-
-              <div class="form-label-group">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-              </div>
-              <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit"  value="Sign in"/>
-              <hr class="my-4">
-              
-            </form>
+                <form class="form" role="form" autocomplete="off" method="post">
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Nickname</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name='nickname'>
+                        </div> 
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="password" name='password' >
+                        </div>
+                    </div>
+                    <center>
+                            <input name="submit" type="submit" class="btn btn-primary" value="SignIn">
+                    </center>
+                </form>
           </div>
         </div>
       </div>
