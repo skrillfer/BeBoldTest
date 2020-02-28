@@ -23,5 +23,5 @@
     <title>BboldTest</title>
   </head>
   <?php
-   require "../conexion.php"
+   require "conexion.php"
   ?>
