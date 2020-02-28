@@ -1,7 +1,10 @@
 <?php
 session_start();
 require "header.php";
-
+if(!$_GET['employee_id_edit']){
+  header("Location: dashboard.php");
+  exit;    
+}
 if (isset($_POST['submit'])) {
     try {
       $employee =[
